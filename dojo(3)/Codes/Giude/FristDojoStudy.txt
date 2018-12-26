@@ -1,0 +1,160 @@
+Dojo is JS Framework to build web app 
+- make easy to manupilate with Dom , Charts and Grids , Ajax , Ui , Animations 
+
+1-Dojo Component 
+a- Dojo Base 
+it countain base package of dojo toolkit , it contain dom utility dom query , event handeler and ajax 
+, object oriented feature
+
+b- Dojo Core 
+   this is botstrap module for toolkit , and have legay package , extra features as i/o management , draq and drop features 
+   and it has legacy loader , amd loader 
+
+2- Dijit 
+it have ui liberary and wedgets and component 
+it need to dojo core and dojo base 
+it contain calenders colors graphs  and others components 
+
+3-Dojox 
+it is area for development  ,  it merged with dojo and dijit in dojo 2 
+
+4 - util 
+ it has rest of featueres as building and testing and documentation 
+---------------------------------------------------------------------------------------------
+AMD Asynchronous module Definitions format it introduce in dojo 1.7 
+it load dynamically , we don't need to tool to generate minified  js file , it use to modularize js code 
+good for dependency managment 
+
+<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.12.1/dojo/dojo.js" data-dojo-config="async: true"></script>
+note 
+data-dojo-config="async: true" this line turn on Asynch Mode 
+to control module in the fly and download it if needed in the fly 
+-----------------------
+
+old way to select element from dom 
+dojo.ready(
+                function(){
+                    var testId = dojo.byId("greeting");
+                  console.log(testId.innerHTML);
+                }
+            );
+
+dojo.ready();  this function run when all element loaded 
+ this return on element 
+
+ function(){
+                    var testId = dojo.query("#greeting");
+                  console.log(testId[0].innerHTML);
+				  testId[0].innerHTML =  "Abdelrahman Say Hello "
+                }
+ th var testId = dojo.query("#greeting");
+  this return Array  of elements 
+
+ - for select Css class 
+           var testId = dojo.query(".testClass");
+		   // and you can add any attribute 
+ 
+for select elements 
+                  dojo.query("div > a ")
+and there  dojo.Create to create element 
+and there  dojo.place  to  set element inspecific palce 
+and there  dojo.destroy  to destroy elements from dom 
+ -----------------------------------------------------------------
+ 
+ event Handling Dom or Dojo 
+
+
+
+new Style of Dojo 
+ require(["dojo/dom", "dojo/domReady!"], function(dom){
+            var greeting = dom.byId("greeting");
+            greeting.innerHTML += " from Dojo!";
+        });
+		
+		
+require([modules], function(objects){
+
+})	
+
+
+
+event handeler 
+
+require(["dojo/on", "dojo/dom", "dojo/dom-style", "dojo/mouse", "dojo/domReady!"],
+    function(on, dom, domStyle, mouse) {
+        var myButton = dom.byId("myButton"),
+            myDiv = dom.byId("myDiv");
+
+        var mybuttonClick =  on(myButton, "click", function(evt){
+            domStyle.set(myDiv, "backgroundColor", "blue");
+			
+			// this will effect for one  because you remove it affter frist effect 
+			// mybuttonClick.remove();
+			
+			/// this will puase the effect of this button and you can recover this effect agian 
+			/// mybuttonClick.puase()
+        });
+        on(myDiv, mouse.enter, function(evt){
+            domStyle.set(myDiv, "backgroundColor", "red");
+        });
+        on(myDiv, mouse.leave, function(evt){
+            domStyle.set(myDiv, "backgroundColor", "");
+        });
+});
+
+you can delegate events 
+
+----------------------------------------------------------------------------------
+observer/observable pattern or also known as the publisher/subscriber pattern ther example in images 
+
+----------------------------------------
+
+Dom Function in Dojo replace and create and empty and distroy  foe dom element  prefios features 
+
+empty remove then content of element 
+distroy remove element from Dom Object 
+
+
+---------------------------------------
+Dojo Effect 
+the previos lesson is Dom Manipulation but it can be abrupt شديدة الانحدار هههه 
+so it make you confused and frustrated محبط 
+so Dojo Effect  make dojo/fx  and this module make effect more easy 
+
+fadein make element display
+fadeout make it not display
+
+wipeIn make element show it with slow motion 
+wipeOut make it  hide it with slow motion 
+
+Slidein  move it tp specific location in screen 
+Slideout  back it to previos location in screen 
+
+---------------------------
+dojo support animation in your code and you can add animation in your code with easly way 
+
+-----------------------
+if we have alot of animation and there animations related each other  dojo provide 
+chain and combain to relate it with each other 
+chain([animation1 , animation2])  animation1 run frist then animation2 after it 
+combain([animation1 , animation2])  animation1 and animation2 run in the same time 
+this is in dojo/fx 
+
+and dojo support event in action as beforebegin , onbegin , onplay , onAnimate , onEnd
+
+--------------------------------------------------------------------------------
+
+Dojo Server Coniction 
+Ajax , Rest , Json 
+
+--------------------------
+dijit is dojo ui have alot of wedgets as buttons with all it types and textBoxes and its types 
+and you can set validation and conditions for every wedgets and there is layout Wedget 
+
+
+
+
+
+
+
+
